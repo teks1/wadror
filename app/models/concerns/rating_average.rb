@@ -3,7 +3,7 @@ module RatingAverage
 	extend ActiveSupport::Concern
 	
 	def average_rating
-		"average #{ratings.average(:score)}"
+		ratings.average(:score)
 	end
 
 end

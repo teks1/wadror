@@ -1,3 +1,0 @@
-== README
-
-http://quiet-sea-23690.herokuapp.com

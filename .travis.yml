@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+- 2.3.0
+script:
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: pOIMDb+mZGTen81kGWw+yZOMQAzC0z0N3SvnNjrgCOjEvQy+9I/ueGDGIvhA2l0KLZ67Gb6DJlDP/cjYuvYWQKRUU+w3+Xuf+uHoGK0oG3SzqRsyfhuHwzhC7LQ0d49kNbDsWFgKe2km5HfMhdeGf58fR82PkVZYVcrJtetcNcfE0gFLyybLhJL+VRPBvrYxaVn94pgojYleijODJ+/DqjGdvAr+YHvMTCX/kS6hiooWj/9PJGxO0ZfMMw+2RC5oVFGKxNEAPh2inaEg3YeiDmUaavqSHwUU9Hp8zXVh4YSUfINseLtVB5R1WulSGWmKMT9Je/kD+6+ua6Jo13nXaInDP0hAOc9adWp+VGnamJg+QJ65s8mMALoBgArxzinsRggSnMZnTuE+/7y4hWSU0XD8dqkqgGG2d6l6Grb/daWbhTrl43t2y8HYHI0B+pcuCP4xcwj9HdO6QSQ7Jf7zIK0pVmCUkf7J10uhXq57mjKCm0XHS5IcnFtGfJujnJs4OorHygW0kLSCXMP6bM5CDqCQNzttNZMHF5jr5Acpw4GIs8TmbzGMf92ce98XS7T2STmndb5a7qY29+5x5xJPmT/FMFLTZuL2xJ97oUoqQ7AfSPA38bzH2kowdarO4fZ6btB8QqoqRRA+EsjJzQ47ATqM30KaGAM4O33SmUZXz8M=
+  app: quiet-sea-23690
+  run: 
+  - "rake db:migrate"
+  - restart
