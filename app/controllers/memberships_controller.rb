@@ -38,7 +38,7 @@ class MembershipsController < ApplicationController
       if @membership.save
         
         current_user.memberships << @membership
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to @membership.beer_club, notice: "Welcome to the club #{current_user.username}." }
         format.json { render :show, status: :created, location: @membership }
       
       else

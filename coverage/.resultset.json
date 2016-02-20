@@ -302,6 +302,8 @@
         null,
         null,
         1,
+        0,
+        0,
         null,
         null,
         null,
@@ -726,6 +728,8 @@
         0,
         0,
         0,
+        0,
+        0,
         0
       ],
       "/home/marko/weparor/beer/ratebeer/app/models/beer_club.rb": [
@@ -737,6 +741,6 @@
         0
       ]
     },
-    "timestamp": 1455884899
+    "timestamp": 1455981710
   }
 }
