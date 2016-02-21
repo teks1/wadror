@@ -1,5 +1,5 @@
 class Style < ActiveRecord::Base
 
-	#has many :beers
+	has_many :beers
 
 end
