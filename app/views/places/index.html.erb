@@ -8,7 +8,7 @@
 <% end %>
 
 <% if @places %>
-  <table>
+  <table class="table">
     <thead>
       <% Place.rendered_fields.each do |f| %>
         <td><%=f %></td>
@@ -18,9 +18,9 @@
       <tr>
         <% Place.rendered_fields.each do |f| %>
         	<% if f == :name %>
-          <td><%=link_to place.send(f), place_path(place.id) %></td>
-          	<% else %><td><%=place.send(f)%></td>
-          	<% end %>
+          <td><%=link_to place.send(f), place_path(place.id), class:"btn btn-default btn-sm" %></td>
+          <% else %><td><%=place.send(f)%></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
