@@ -49,6 +49,10 @@
         51,
         10,
         null,
+        null,
+        1,
+        4,
+        null,
         null
       ],
       "/home/marko/weparor/beer/ratebeer/lib/rating_average.rb": [
@@ -57,7 +61,7 @@
         1,
         null,
         1,
-        6,
+        28,
         null,
         null,
         null
@@ -71,14 +75,29 @@
         null,
         null,
         null,
+        3,
+        null,
         1,
-        8,
+        6,
         null,
         null,
         null
       ],
       "/home/marko/weparor/beer/ratebeer/app/helpers/application_helper.rb": [
         1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        6,
+        null,
+        null,
         null
       ],
       "/home/marko/weparor/beer/ratebeer/app/helpers/beer_clubs_helper.rb": [
@@ -190,8 +209,8 @@
         1,
         null,
         1,
-        116,
-        93,
+        108,
+        85,
         null,
         null,
         1,
@@ -221,6 +240,10 @@
         2,
         null,
         null,
+        1,
+        8,
+        null,
+        null,
         null
       ],
       "/home/marko/weparor/beer/ratebeer/app/models/brewery.rb": [
@@ -230,6 +253,9 @@
         1,
         1,
         1,
+        null,
+        4,
+        4,
         null,
         1,
         1,
@@ -255,6 +281,10 @@
         null,
         null,
         null,
+        1,
+        6,
+        null,
+        null,
         null
       ],
       "/home/marko/weparor/beer/ratebeer/app/models/style.rb": [
@@ -265,6 +295,10 @@
         null,
         1,
         1,
+        null,
+        1,
+        8,
+        null,
         null,
         null
       ],
@@ -631,6 +665,11 @@
         null,
         1,
         2,
+        2,
+        2,
+        2,
+        2,
+        2,
         null,
         null,
         1,
@@ -826,17 +865,6 @@
         0,
         0
       ],
-      "/home/marko/weparor/beer/ratebeer/app/models/concerns/rating_average.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "/home/marko/weparor/beer/ratebeer/app/models/beer_club.rb": [
         0,
         0,
@@ -846,6 +874,6 @@
         0
       ]
     },
-    "timestamp": 1456341249
+    "timestamp": 1456601996
   }
 }

@@ -6,7 +6,7 @@
  <% if @user.ratings.empty? %>
   User has not rated beers yet
   <% else %>
-  	Has made <%= pluralize(@user.ratings.count,'rating') %>, average <%= @user.average_rating %>
+  	Has made <%= pluralize(@user.ratings.count,'rating') %>, average <%= round(@user.average_rating) %>
   	<p>Favorite style <%= @user.favorite_style.name %></p>
   	<p>Favorite brewery <%= @user.favorite_brewery.name %></p>
   <% end %>

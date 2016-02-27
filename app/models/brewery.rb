@@ -5,6 +5,9 @@ class Brewery < ActiveRecord::Base
 	validates :year, numericality: { only_integer: true, greater_than: 1041 }
 	validate :check_year_not_in_future
 
+	scope :active, -> { where active:true }
+	scope :retired, -> { where active:[nil,false] }
+
 	has_many :beers, dependent: :destroy
 	has_many :ratings, through: :beers
 
@@ -28,5 +31,9 @@ class Brewery < ActiveRecord::Base
   	#def average_rating
   	#	"average #{ratings.average(:score)}"
   	#end
+	
+	def self.top(n)
+   		sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0) }.first(n)
+ 	end
 
 end
