@@ -5,8 +5,8 @@ include Helpers
 describe "Rating" do
 	let!(:brewery) { FactoryGirl.create :brewery, name: "Koff" }
 	let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
-  	let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
-  	let!(:user) { FactoryGirl.create :user }
+  let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
+  let!(:user) { FactoryGirl.create :user }
 
   	before :each do
   		sign_in(username:"Pekka", password:"Foobar1")
@@ -24,14 +24,16 @@ describe "Rating" do
     	expect(beer1.average_rating).to eq(15.0)
 
   	end
+
   	it "shows number of ratings" do
   		visit ratings_path
+
   		expect(Rating.count).to be(0)
   		FactoryGirl.create :rating, user:user
   		FactoryGirl.create :rating, user:user, score:15
   		visit ratings_path
+      
   		expect(Rating.count).to be(2)
-  		expect(page).to have_content("Number of ratings 2")
   		expect(page).to have_content("Beer 10 Pekka")
   		
   	end

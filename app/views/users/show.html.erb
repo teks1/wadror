@@ -1,5 +1,8 @@
 <h2>
   <%= @user.username %>
+  <% if @user.banned? %>
+  <span class="label label-info">Account frozen</span>
+  <% end %>
 </h2>
 
 <p>
@@ -37,4 +40,8 @@
 <%= link_to 'Edit', edit_user_path(@user) %> 
 <%= link_to 'Destroy', current_user, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
-<%= link_to 'Back', users_path %>
+<br>
+<% if admin_user %>
+<% freeze_or_reactive = @user.banned ? "Reactive account" : "Freeze account" %>
+<%= link_to freeze_or_reactive, toggle_banned_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+<% end %>

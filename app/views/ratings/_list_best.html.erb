@@ -8,12 +8,12 @@
 
   <tbody>
   <% top.each do |t| %>
-      <% if t.average_rating > 0 %>
+      
       <tr>
         <td><%= t.name %></td>
-        <td><%= round(t.average_rating) %></td>
+        <td><%= round(t.average_rating) || 'no ratings' %></td>
       </tr>
-      <% end %>
+      
   <% end %>
   </tbody>
 </table>

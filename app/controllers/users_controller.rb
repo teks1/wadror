@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:toggle_banned]
 
   # GET /users
   # GET /users.json
@@ -66,13 +67,22 @@ class UsersController < ApplicationController
     reset_session
   end
 
+  def toggle_banned
+    user = User.find(params[:id])
+    user.update_attribute :banned, (not user.banned)
+
+    new_status = user.banned? ? "banned" : "normal"
+
+    redirect_to :back, notice:"user status changed to #{new_status}"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the scary internet, only allow the white list through.    
     def user_params
       params.require(:user).permit(:username, :password, :password_confirmation)
     end
