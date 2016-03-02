@@ -9,7 +9,23 @@ class BreweriesController < ApplicationController
     @breweries = Brewery.all
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
-    render :index
+    order = params[:order] || 'name'
+
+    if session[:order_direction].nil?
+      session[:order_direction] = "lol_lame"
+    else
+      session[:order_direction] = nil
+    end
+
+    direction = session[:order_direction]? "asc" : "desc"
+    @active_breweries = case order
+      when 'name' then Brewery.active.order(:name)
+      when 'year' then Brewery.active.order(year: direction)
+    end
+    @retired_breweries = case order
+      when 'name' then Brewery.retired.order(:name)
+      when 'year' then Brewery.retired.order(year: direction)
+    end
   end
 
   # GET /breweries/1

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   #get 'places', to: 'places#index'
   post 'places', to: 'places#search'
 
+  get 'beerlist', to: 'beers#list'
+
   #post 'ratings', to:'ratings#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

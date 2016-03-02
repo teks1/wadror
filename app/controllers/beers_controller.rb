@@ -8,6 +8,14 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
     @beers = Beer.all
+
+    order = params[:order] || 'name'
+
+    @beers = case order
+      when 'name' then @beers.sort_by{ |b| b.name }
+      when 'brewery' then Beer.includes(:brewery).order("breweries.name")
+      when 'style' then @beers.sort_by{ |b| b.style.name }
+    end
   end
 
   # GET /beers/1
@@ -65,6 +73,9 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url, notice: 'Beer was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def list
   end
 
   private
