@@ -1,11 +1,15 @@
 class RatingsController < ApplicationController
 	
 	def index
-		@ratings = Rating.all
+		#Omissa testeissa ainoastaan top-oluiden cachauksella oli merkittava vaikutus
 		@recent_ratings = Rating.recent
-		@top_breweries = Brewery.top(3)
-		@top_beers = Beer.top(3)
+		Rails.cache.write("top breweries", Brewery.top(3), expires_in: 10.minutes) if Rails.cache.read("top breweries").nil?
+		@top_breweries = Rails.cache.read("top breweries")
+		Rails.cache.write("top beers", Beer.top(3), expires_in: 8.minutes) if Rails.cache.read("top beers").nil?
+		@top_beers = Rails.cache.read("top beers")
+		
 		@top_styles = Style.top(3)
+		
 		@top_raters = User.top(3)
 	end
 
