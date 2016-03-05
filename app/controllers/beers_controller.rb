@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_action :set_breweries_and_styles_for_template, only: [:new, :edit, :create]
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list, :nglist]
   before_action :ensure_that_admin_user, only: [:destroy]
 
   # GET /beers
@@ -76,6 +76,9 @@ class BeersController < ApplicationController
   end
 
   def list
+  end
+
+  def nglist
   end
 
   private

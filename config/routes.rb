@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   post 'places', to: 'places#search'
 
   get 'beerlist', to: 'beers#list'
+  get 'ngbeerlist', to:'beers#nglist'
+
+  get 'brewerylist', to: 'breweries#list'
+  get 'brewerylist2', to: 'breweries#list2'
 
   #post 'ratings', to:'ratings#create'
   # The priority is based upon order of creation: first created -> highest priority.
