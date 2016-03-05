@@ -47,6 +47,7 @@ group :development do
   gem 'spring'
 
   gem 'rails_layout'
+  gem 'rack-mini-profiler'
 end
 
 group :development, :test do

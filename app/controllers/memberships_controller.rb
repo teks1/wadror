@@ -29,7 +29,7 @@ class MembershipsController < ApplicationController
 
     @membership = Membership.new(membership_params)
     
-     if BeerClub.find(@membership[:beer_club_id]).users.include?(current_user)
+     if BeerClub.find(@membership[:beer_club_id]).members.include?(current_user)
       redirect_to :root
       return
     end
@@ -70,6 +70,13 @@ class MembershipsController < ApplicationController
       format.html { redirect_to current_user, notice: "Membership in #{@membership.beer_club.name} beerclub ended." }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_confirmation
+    membership = Membership.find(params[:id])
+    membership.update_attribute :confirmed, true
+
+    redirect_to :back, notice:"member confirmed"
   end
 
   private

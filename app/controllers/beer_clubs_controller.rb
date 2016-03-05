@@ -14,6 +14,7 @@ class BeerClubsController < ApplicationController
   def show
     @membership = Membership.new
     @membership.beer_club = @beer_club
+    @memberships = Membership.all
   end
 
   # GET /beer_clubs/new
@@ -29,9 +30,15 @@ class BeerClubsController < ApplicationController
   # POST /beer_clubs.json
   def create
     @beer_club = BeerClub.new(beer_club_params)
+    
 
     respond_to do |format|
       if @beer_club.save
+        @membership = Membership.new(user_id: current_user.id, beer_club_id: @beer_club.id)
+        @membership.confirmed = true
+        @membership.save
+        current_user.memberships << @membership
+
         format.html { redirect_to @beer_club, notice: 'Beer club was successfully created.' }
         format.json { render :show, status: :created, location: @beer_club }
       else
@@ -58,7 +65,11 @@ class BeerClubsController < ApplicationController
   # DELETE /beer_clubs/1
   # DELETE /beer_clubs/1.json
   def destroy
+    
+    memberships = Membership.where(beer_club_id: @beer_club)
+    memberships.all.each &:destroy    
     @beer_club.destroy
+    
     respond_to do |format|
       format.html { redirect_to beer_clubs_url, notice: 'Beer club was successfully destroyed.' }
       format.json { head :no_content }

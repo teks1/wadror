@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include Helpers
+
 describe "beerlist page" do
 
   before :all do
@@ -40,5 +42,25 @@ describe "beerlist page" do
     find('table').find('tr:nth-child(2)')
     
     expect(page).to have_content "Nikolai"
+  end
+  it "shows beers in name order by default", js: true do
+  	visit beerlist_path
+  	expect(find('table').find('tr:nth-child(2)')).to have_content "Fastenbier"
+    expect(find('table').find('tr:nth-child(3)')).to have_content "Lechte Weisse"
+    expect(find('table').find('tr:nth-child(4)')).to have_content "Nikolai"
+  end
+  it "shows beers in style order when style is clicked", js: true do
+  	visit beerlist_path
+    click_link('style')
+    expect(find('table').find('tr:nth-child(2)')).to have_content "Lager"
+    expect(find('table').find('tr:nth-child(3)')).to have_content "Rauchbier"
+    expect(find('table').find('tr:nth-child(4)')).to have_content "Weizen"
+  end
+  it "shows beers in brewery order when brewery is clicked", js: true do
+	visit beerlist_path
+    click_link('brewery')
+    expect(find('table').find('tr:nth-child(2)')).to have_content "Ayinger"
+    expect(find('table').find('tr:nth-child(3)')).to have_content "Koff"
+    expect(find('table').find('tr:nth-child(4)')).to have_content "Schlenkerla"
   end
 end
